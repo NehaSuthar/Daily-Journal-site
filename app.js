@@ -1,5 +1,4 @@
-//jshint esversion:6
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -16,7 +15,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-mongoose.connect("mongodb+srv://test:test@cluster0.qdawd.mongodb.net/blogDB", {useNewUrlParser: true});
+mongoose.connect(process.env.mongodburl, {useNewUrlParser: true});
 const dailyNoteSchema =  new mongoose.Schema({
   title:{
     type:String,
